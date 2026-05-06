@@ -13,6 +13,9 @@ case "${1:-}" in
   config)
     docker compose --env-file .env -f compose.yml config
     ;;
+  pull)
+    docker compose --env-file .env -f compose.yml pull --ignore-buildable
+    ;;
   build)
     docker compose --env-file .env -f compose.yml build caddy
     ;;
@@ -41,7 +44,7 @@ case "${1:-}" in
     docker compose --env-file .env -f compose.yml --profile tunnel up -d
     ;;
   *)
-    echo "Usage: $0 {config|build|up|down|restart|ps|logs|validate|preflight|tunnel-up}" >&2
+    echo "Usage: $0 {config|pull|build|up|down|restart|ps|logs|validate|preflight|tunnel-up}" >&2
     exit 2
     ;;
 esac

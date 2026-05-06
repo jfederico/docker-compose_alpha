@@ -1,9 +1,12 @@
 COMPOSE = docker compose --env-file .env -f compose.yml
 
-.PHONY: config build up down restart ps logs validate preflight smoke tunnel-up
+.PHONY: config pull build up down restart ps logs validate preflight smoke tunnel-up
 
 config:
 	$(COMPOSE) config
+
+pull:
+	$(COMPOSE) pull --ignore-buildable
 
 build:
 	$(COMPOSE) build caddy

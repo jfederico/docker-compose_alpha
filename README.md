@@ -29,6 +29,7 @@ cp cloudflare/ddns.env.example cloudflare/ddns.env
 
 ```bash
 docker compose --env-file .env -f compose.yml config
+docker compose --env-file .env -f compose.yml pull --ignore-buildable
 docker compose --env-file .env -f compose.yml build caddy
 docker compose --env-file .env -f compose.yml up -d
 ```
@@ -39,6 +40,7 @@ The helper script and Make targets wrap the common commands:
 
 ```bash
 scripts/alpha.sh config
+scripts/alpha.sh pull
 scripts/alpha.sh build
 scripts/alpha.sh up
 scripts/alpha.sh logs caddy

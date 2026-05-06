@@ -6,6 +6,7 @@ services:
       context: ./caddy
       dockerfile: Dockerfile
     image: local/caddy-cloudflare:2
+    pull_policy: never
     container_name: alpha-caddy
     restart: unless-stopped
     environment:
