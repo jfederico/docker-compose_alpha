@@ -1,6 +1,6 @@
 COMPOSE = docker compose --env-file .env -f compose.yml
 
-.PHONY: config pull build up down restart ps logs validate preflight smoke tunnel-up
+.PHONY: config pull build up down restart ps logs validate preflight smoke
 
 config:
 	$(COMPOSE) config
@@ -34,6 +34,3 @@ preflight:
 
 smoke:
 	./scripts/smoke-alpha.sh
-
-tunnel-up:
-	$(COMPOSE) --profile tunnel up -d

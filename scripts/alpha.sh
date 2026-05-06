@@ -40,11 +40,8 @@ case "${1:-}" in
   preflight)
     ./scripts/preflight.sh
     ;;
-  tunnel-up)
-    docker compose --env-file .env -f compose.yml --profile tunnel up -d
-    ;;
   *)
-    echo "Usage: $0 {config|pull|build|up|down|restart|ps|logs|validate|preflight|tunnel-up}" >&2
+    echo "Usage: $0 {config|pull|build|up|down|restart|ps|logs|validate|preflight}" >&2
     exit 2
     ;;
 esac

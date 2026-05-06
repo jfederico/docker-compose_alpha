@@ -45,4 +45,3 @@ local files:
 
 - `.env`
 - `cloudflare/ddns.env`
-- `cloudflare/tunnels.env`

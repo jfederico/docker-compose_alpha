@@ -6,7 +6,6 @@ Alpha runs:
 
 - `caddy`
 - `cloudflare-ddns`
-- optional `cloudflared`
 
 All public hostnames forward to Seri through `LEGACY_SERI_HTTP`.
 

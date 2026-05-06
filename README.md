@@ -9,7 +9,7 @@ bridge.
 
 - `compose.yml`: alpha services
 - `caddy/`: Caddy image, main config, snippets, and route files
-- `cloudflare/`: local-only env templates for DDNS and optional tunnel support
+- `cloudflare/`: local-only env templates for DDNS
 - `legacy-seri/`: templates for the temporary old-host bridge
 - `docs/`: architecture, cutover, rollback, and migration notes
 - `data/`: runtime Caddy state, certs, config, and logs; ignored by git
@@ -60,15 +60,3 @@ ALPHA_IP=172.16.0.110 scripts/smoke-alpha.sh
 
 The hostname inventory lives in `config/domain-inventory.tsv`; update it when a
 hostname moves from Seri to a dedicated LXC.
-
-## Optional Tunnel
-
-If a Cloudflare Tunnel is still needed:
-
-```bash
-cp cloudflare/tunnels.env.example cloudflare/tunnels.env
-docker compose --env-file .env -f compose.yml --profile tunnel up -d
-```
-
-Prefer one tunnel configured in Cloudflare with public hostnames instead of one
-container per domain.
