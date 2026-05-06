@@ -1,0 +1,12 @@
+{
+	email {$LETSENCRYPT_EMAIL}
+	acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
+
+	servers {
+		trusted_proxies static private_ranges
+		client_ip_headers CF-Connecting-IP X-Forwarded-For
+	}
+}
+
+import /etc/caddy/snippets/*.caddy
+import /etc/caddy/routes/*.caddy

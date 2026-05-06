@@ -1,0 +1,6 @@
+services:
+  nginx:
+    volumes:
+      - ../docker-compose_alpha/legacy-seri/nginx/alpha-bridge.conf:/etc/nginx/sites-enabled/alpha-bridge.conf:ro
+    ports:
+      - "${ALPHA_BRIDGE_BIND:-127.0.0.1}:8080:8080"

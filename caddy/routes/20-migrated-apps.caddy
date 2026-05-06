@@ -1,0 +1,13 @@
+# Move hostnames here one at a time as apps leave Seri.
+# Keep this file loaded after 10-legacy-seri.caddy; when a hostname is migrated,
+# remove it from 10-legacy-seri.caddy and add a dedicated block below.
+
+# links-go.glcpo.net {
+# 	import security_headers
+# 	import common_proxy http://shlink-portal.lxc.lan:8080
+# }
+
+# dashboard-go.glcpo.net {
+# 	import security_headers
+# 	import common_proxy http://shlink-dashboard.lxc.lan:3005
+# }

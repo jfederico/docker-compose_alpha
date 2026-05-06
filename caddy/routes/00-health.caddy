@@ -1,0 +1,3 @@
+http://alpha-health.local {
+	respond "alpha caddy ok" 200
+}

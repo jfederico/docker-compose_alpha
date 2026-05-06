@@ -1,0 +1,15 @@
+host	initial_upstream	target_state	notes
+glcpo.net	LEGACY_SERI_HTTP	glcpo app LXC or redirect owner	Currently forwards through glcpo-nginx on Seri.
+go.glcpo.net	LEGACY_SERI_HTTP	shlink API/web LXC	Preserve short-link, service-worker, and /server redirect behavior during bridge phase.
+dashboard-go.glcpo.net	LEGACY_SERI_HTTP	shlink dashboard LXC	Early migration candidate.
+links-go.glcpo.net	LEGACY_SERI_HTTP	shlink portal LXC	Early migration candidate.
+123it.top	LEGACY_SERI_HTTP	123it wordpress LXC	Bridge blocks /xmlrpc.php like the old proxy.
+ai.123it.top	LEGACY_SERI_HTTP	123it ai LXC	Currently routes to 123it-ai on Seri.
+drive.123it.top	LEGACY_SERI_HTTP	nextcloud LXC	Keep large upload limit.
+office.123it.top	LEGACY_SERI_HTTP	onlyoffice LXC	Keep long proxy timeouts.
+dns.jesus.123it.top	LEGACY_SERI_HTTP	alpha/core pihole or network LXC	Likely moves after alpha core network services exist.
+123it.ca	LEGACY_SERI_HTTP	123it wordpress LXC	Currently same backend pattern as 123it.top.
+knx1.com	LEGACY_SERI_HTTP	knx1 LXC	Preserve /apps/rooms, /lti, /moodle routing.
+standrews560.top	LEGACY_SERI_HTTP	standrews560 LXC	Currently routes to standrews560-nginx on Seri.
+drive.standrews560.top	LEGACY_SERI_HTTP	standrews560 nextcloud LXC	Keep large upload limit.
+office.standrews560.top	LEGACY_SERI_HTTP	onlyoffice LXC	May share OnlyOffice with 123it during transition.

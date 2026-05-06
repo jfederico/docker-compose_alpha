@@ -1,0 +1,58 @@
+name: docker-compose-alpha
+
+services:
+  caddy:
+    build:
+      context: ./caddy
+      dockerfile: Dockerfile
+    image: local/caddy-cloudflare:2
+    container_name: alpha-caddy
+    restart: unless-stopped
+    environment:
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      CLOUDFLARE_DNS_API_TOKEN: ${CLOUDFLARE_DNS_API_TOKEN}
+      LEGACY_SERI_HTTP: ${LEGACY_SERI_HTTP}
+    ports:
+      - "${HTTP_BIND:-0.0.0.0}:80:80"
+      - "${HTTPS_BIND:-0.0.0.0}:443:443"
+      - "${HTTPS_BIND:-0.0.0.0}:443:443/udp"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/routes:/etc/caddy/routes:ro
+      - ./caddy/snippets:/etc/caddy/snippets:ro
+      - ./data/caddy/data:/data
+      - ./data/caddy/config:/config
+      - ./data/caddy/log:/var/log/caddy
+    healthcheck:
+      test: ["CMD", "caddy", "validate", "--config", "/etc/caddy/Caddyfile"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: journald
+
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: alpha-cloudflare-ddns
+    restart: unless-stopped
+    env_file:
+      - path: ./cloudflare/ddns.env
+        required: false
+    logging:
+      driver: journald
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: alpha-cloudflared
+    restart: unless-stopped
+    profiles:
+      - tunnel
+    env_file:
+      - path: ./cloudflare/tunnels.env
+        required: false
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - cloudflared tunnel --no-autoupdate run --token "$${CLOUDFLARE_TUNNEL_TOKEN}"
+    logging:
+      driver: journald

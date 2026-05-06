@@ -1,0 +1,20 @@
+# Initial cutover state: alpha owns public TLS and forwards every hostname to
+# the temporary HTTP bridge on the current Seri deployment.
+
+glcpo.net,
+go.glcpo.net,
+dashboard-go.glcpo.net,
+links-go.glcpo.net,
+123it.top,
+ai.123it.top,
+drive.123it.top,
+office.123it.top,
+dns.jesus.123it.top,
+123it.ca,
+knx1.com,
+standrews560.top,
+drive.standrews560.top,
+office.standrews560.top {
+	import security_headers
+	import common_proxy {$LEGACY_SERI_HTTP}
+}
