@@ -52,8 +52,9 @@ services:
     env_file:
       - path: ./cloudflare/tunnels.env
         required: false
-    entrypoint: ["/bin/sh", "-c"]
     command:
-      - cloudflared tunnel --no-autoupdate run --token "$${CLOUDFLARE_TUNNEL_TOKEN}"
+      - tunnel
+      - --no-autoupdate
+      - run
     logging:
       driver: journald
